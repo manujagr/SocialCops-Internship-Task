@@ -18,24 +18,38 @@ Outliers can be removed directly from these columns separately but on observing 
 **Hence, outliers are detected in each type of commodity for each year.**
 
 Now, the task is find the method to filter the outliers. On plotting the histogram for a commodity in a specific year, it is found that the histogram is rightly skewed. On applying log transformation to the data, still we were not able to obtain the **Gaussian** or **Normal** distribution. So, we cannot apply the ~~standard deviation~~ method for the outlier detection.
-
+![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/plot%201.png)
+![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/log%20orange%202015.png)
   
 Now, the best preferred method for such cases is by finding the **interquartile range** and then finding the outlier as this method works on median rather than mean as in the previous case. Here, first the inter-quartile range for each commodity in each year is found, then **lower bound** is set to **“quartile 1 – 1.5 * inter-quartile range”** and **upper bound** is set to **“quartile 3 + 1.5 * inter-quartile range”**.
- 
+
+![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/images-mod1-spread10.gif)
+
 ### Seasonality Detection
 Now, after removing the outliers, we need to check whether the time series is stationary or not. Here, **Augmented Dickey-Fuller(ADF)** hypothesis test is used, which returns a p-value, **if p-value>0.05, then time series is non-stationary, otherwise not**. Non-stationary time series are filtered for the further analysis.
   
+![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/time%20series%20plot.png)
+![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/time%20series.png)
 
 Now, the focus is to find the type of seasonality (“additive” or “multiplicative”) in the different cluster of APMC and commodity. Also, modal price is taken for analysing this. Examining each cluster by plotting the graph between and “date” and “modal price” will be a time-consuming process and less accurate method. **So, for detection of seasonality firstly, each cluster of APMC and commodity is decomposed into its substituents considering the time series as both additive and multiplicative. Now the auto-correlation between the residual price is calculated for both additive and multiplicative. If the value of auto-correlation for “additive” is high, then time series is “multiplicative” and vice-versa.**
 
 ### De-seasonalising the data
 Now, after getting the type of seasonality present in the different cluster of APMC and commodity, “modal prices” are deseasonalised by subtracting the seasonal component from the “modal price”.
-  
+
+
+![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/satara%2Bpotato.png)
+                                             *Satara+Potato*
+
+![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/kurdwadi%20%2B%20sorgum(jawar).png)            *kurdwadi+sorgum(jawar)*
+
 ### Comparison of APMC/mandi price with the MSP
 The modal price, de-seasonalised price and MSP price are compared on the basis of APMC name and the relevant commodity in that APMC.
 
- 
+![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/compare%201.png)
+                                         *Satara+Potato*
 
+![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/compare%202.png)
+                                         *kurdwadi+sorgum(jawar)* 
  
 ### Flagging the set of APMC/mandis and commodities with highest price fluctuation across different commodities
 Now, fluctuation in the prices are calculated by differencing the “min price” column from the “max price” column. The grouping on the basis of Commodity, APMC and Year is done in order and then the maximum value of fluctuation is find among all the seasons or months in a given year. In this way, fluctuations are recorded for each year in a particular month.
