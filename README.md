@@ -46,11 +46,8 @@ Now, after getting the type of seasonality present in the different cluster of A
 The modal price, de-seasonalised price and MSP price are compared on the basis of APMC name and the relevant commodity in that APMC.
 
 ![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/compare%201.png)
-                                         *Satara+Potato*
-
-![alt text](https://github.com/manujagr/SocialCops-Internship-Task/blob/master/Visualisation/compare%202.png)
-                                         *kurdwadi+sorgum(jawar)* 
- 
+                                         *kurdwadi+sorgum(jawar)*
+                                       
 ### Flagging the set of APMC/mandis and commodities with highest price fluctuation across different commodities
 Now, fluctuation in the prices are calculated by differencing the “min price” column from the “max price” column. The grouping on the basis of Commodity, APMC and Year is done in order and then the maximum value of fluctuation is find among all the seasons or months in a given year. In this way, fluctuations are recorded for each year in a particular month.
 
